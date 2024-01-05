@@ -1,4 +1,4 @@
-package org.example;
+package project.firecup;
 import java.util.Scanner;
 public class Board {
     public Board(Player player){

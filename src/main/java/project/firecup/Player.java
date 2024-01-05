@@ -1,4 +1,4 @@
-package org.example;
+package project.firecup;
 
 public class Player {
     private boolean isXTurn = true; // Assuming 'x' starts the game
