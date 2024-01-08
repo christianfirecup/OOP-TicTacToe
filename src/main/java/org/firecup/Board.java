@@ -1,15 +1,10 @@
-package project.firecup;
+package org.firecup;
 import java.util.Scanner;
 public class Board {
-    public Board(Player player){
-        TurnLogic(player);
-        PrintBoard();
-
-
-
-    }
+ 
 
     private static final String[][] board = CreateBoard();
+    private Boolean GameWon = false;
 
     private static String[][] CreateBoard(){
         String[][] Board = new String[3][3];
@@ -23,7 +18,7 @@ public class Board {
     }
 
     ;
-    public void TurnLogic(Player player){
+    private void TurnLogic(Player player){
         Scanner TurnSelector = new Scanner(System.in);
         if(player.PlayersTurn().equals(" x ")){
             System.out.println("Player One Pick Your Column");
@@ -31,14 +26,14 @@ public class Board {
             System.out.println("Player One Pick Your Row");
             int Row = TurnSelector.nextInt();
             player.Next_Turn();
-            board[Row][Column] = " x ";
+            board[Row][Column] = player.PlayersTurn();
             PrintBoard();
         }  if(player.PlayersTurn().equals(" o ")){
             System.out.println("Player Two Pick Your Row");
             int Column = TurnSelector.nextInt();
             System.out.println("Player Two Pick Your Column");
             int Row = TurnSelector.nextInt();
-            board[Row][Column] = " o ";
+            board[Row][Column] = player.PlayersTurn();
             player.Next_Turn();
             PrintBoard();
         }
@@ -51,6 +46,17 @@ public class Board {
                 System.out.print(board[i][k]);
             }
             System.out.println();
+        }
+
+    }
+    private void GameWonCheck(String[][] GameBoard, Player player){
+
+        if(GameBoard[0][0].equals(player.PlayersTurn()) && GameBoard[0][1].equals(player.PlayersTurn()) && GameBoard[0][2].equals(player.PlayersTurn())){
+            System.out.println(player.PlayersTurn() + "won");
+            GameWon = true;
+        }else{
+            System.out.println("No winner yet");
+
         }
 
     }
